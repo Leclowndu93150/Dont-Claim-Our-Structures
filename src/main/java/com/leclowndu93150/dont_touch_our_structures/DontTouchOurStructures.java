@@ -21,7 +21,7 @@ public class DontTouchOurStructures {
     public static final String MODID = "dont_touch_our_structures";
 
     public DontTouchOurStructures() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC,"dont_claim_our_structures-common.toml");
         ClaimedChunkEvent.BEFORE_CLAIM.register(this::onBeforeClaim);
     }
 
