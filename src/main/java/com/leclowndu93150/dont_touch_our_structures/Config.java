@@ -24,10 +24,15 @@ public class Config {
             .comment("Whether the mod should affect singleplayer worlds")
             .define("affect_singleplayer", false);
 
+    private static final ForgeConfigSpec.BooleanValue ONLY_SURFACE_STRUCTURES = BUILDER
+            .comment("Whether the mod only affect surface structures")
+            .define("onlySurfaceStructures", true);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static Set<ResourceLocation> allowedStructures;
     public static boolean affectSingleplayer;
+    public static boolean onlySurfaceStructures;
 
     private static boolean validateStructureName(final Object obj) {
         if (!(obj instanceof String structureName)) return false;
@@ -41,6 +46,7 @@ public class Config {
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
+        onlySurfaceStructures = ONLY_SURFACE_STRUCTURES.get();
         affectSingleplayer = AFFECT_SINGLEPLAYER.get();
         allowedStructures = ALLOWED_STRUCTURES.get().stream()
                 .map(ResourceLocation::new)

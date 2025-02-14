@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -40,10 +41,11 @@ public class DontTouchOurStructures {
                 continue;
             }
 
-            if (level.structureManager().getAllStructuresAt(chunkPos.getWorldPosition()).containsKey(structure)) {
-                source.sendSystemMessage(Component.literal("Cannot claim this chunk: Contains protected structure '" + structureId + "'"));
+            if ((!Config.onlySurfaceStructures || structure.terrainAdaptation() != TerrainAdjustment.NONE) &&
+                    level.structureManager().getAllStructuresAt(chunkPos.getWorldPosition()).containsKey(structure)) {
+                source.sendSystemMessage(Component.literal("Cannot claim this chunk: Contains protected surface structure '" + structureId + "'"));
                 return CompoundEventResult.interruptTrue(ClaimResult.customProblem(
-                        "Cannot claim this chunk: Contains protected structure '" + structureId + "'"
+                        "Cannot claim this chunk: Contains protected surface structure '" + structureId + "'"
                 ));
             }
         }
