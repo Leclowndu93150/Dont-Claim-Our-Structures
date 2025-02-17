@@ -148,6 +148,9 @@ dependencies {
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     implementation fg.deobf("curse.maven:ftb-teams-forge-404468:6130786")
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:6164053")
+    //implementation fg.deobf("curse.maven:cadmus-845832:5263334")
+    //implementation fg.deobf("curse.maven:resourceful-lib-570073:5659871")
+    implementation fg.deobf("curse.maven:open-parties-and-claims-636608:6055478")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
 }
