@@ -1,0 +1,5 @@
+{
+  "itemGroup.dont_touch_our_structures": "Example Mod Tab",
+  "block.dont_touch_our_structures.example_block": "Example Block",
+  "item.dont_touch_our_structures.example_item": "Example Item"
+}
