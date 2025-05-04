@@ -103,6 +103,7 @@ dependencies {
     implementation "curse.maven:ftb-library-forge-404465:6229316"
     implementation "curse.maven:ftb-teams-forge-404468:6119437"
     implementation "curse.maven:architectury-api-419699:5786327"
+    implementation "curse.maven:open-parties-and-claims-636608:6476205"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

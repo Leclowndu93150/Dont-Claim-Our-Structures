@@ -1,10 +1,12 @@
 package com.leclowndu93150.dont_touch_our_structures;
 
 import com.leclowndu93150.dont_touch_our_structures.compat.FTBChunks.FTBChunksCompat;
+import com.leclowndu93150.dont_touch_our_structures.compat.OPaC.OPaCCompat;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
@@ -22,12 +24,16 @@ public class DontClaimOurStructures {
         if(ModList.get().isLoaded("ftbchunks")){
             FTBChunksCompat.register();
         }
+        if(ModList.get().isLoaded("openpartiesandclaims")){
+            OPaCCompat.register();
+        }
     }
 
-    public static boolean shouldPreventClaim(ServerLevel level, ChunkPos chunkPos) {
+    public static boolean shouldPreventClaim(ServerLevel level, ChunkPos chunkPos, ServerPlayer player) {
         if(level.getLevel().getServer().isSingleplayer() && !Config.affectSingleplayer) {
             return false;
         }
+        if (player.hasPermissions(2)) return false;
 
         Registry<Structure> structureRegistry = level.registryAccess().registryOrThrow(Registries.STRUCTURE);
 
