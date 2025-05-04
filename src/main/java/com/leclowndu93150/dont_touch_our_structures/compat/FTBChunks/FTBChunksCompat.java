@@ -18,7 +18,7 @@ public class FTBChunksCompat {
     private static CompoundEventResult<ClaimResult> onBeforeClaim(CommandSourceStack source, ClaimedChunk chunk) {
         ChunkPos chunkPos = new ChunkPos(chunk.getPos().x(), chunk.getPos().z());
 
-        if(DontTouchOurStructures.shouldPreventClaim(source.getLevel(), chunkPos)) {
+        if(DontTouchOurStructures.shouldPreventClaim(source.getLevel(), chunkPos, source.getPlayer())) {
             source.sendSystemMessage(Component.literal("Cannot claim this chunk: Contains protected surface structure"));
             return CompoundEventResult.interruptTrue(ClaimResult.customProblem(
                     "Cannot claim this chunk: Contains protected surface structure"
